@@ -1,0 +1,13 @@
+
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "medications": [1, 2, 3]
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "medications": [2, 4]
+  }
+]
