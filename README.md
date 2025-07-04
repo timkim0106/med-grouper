@@ -1,46 +1,56 @@
-# MedScheduler
+# MedScheduler: Medication Grouping Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**MedScheduler** is a web-based application designed to assist nurses and healthcare professionals in safely and efficiently managing patient medication schedules. Its core feature is an intelligent algorithm that automatically groups a patient's prescribed medications, taking into account known drug interactions to prevent adverse effects. This tool aims to reduce the cognitive load on nursing staff, minimize medication errors, and improve patient safety in fast-paced clinical environments.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+* **Patient Management**: Easily add new patients and assign them a list of prescribed medications.
+* **Dynamic Medication List**: Add new medications to the system and define their potential interactions with other drugs.
+* **Intelligent Medication Grouping**: For a selected patient, the application automatically calculates and displays the safest way to group medications for administration, ensuring that drugs with known interactions are not placed in the same group.
+* **Interactive UI**: A clean, responsive, and intuitive user interface built with React and Bootstrap, allowing for seamless patient selection and data management.
+* **Real-time Updates**: The patient's medication plan updates instantly when new patients or medications are added.
+* **Client-Side Logic**: The entire application runs in the browser, using JSON files as a mock database, making it easy to run and test without a complex backend setup.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technology Stack
 
-### `npm test`
+* **Frontend**:
+    * [**React**](https://reactjs.org/) (v18.0+)
+    * [**TypeScript**](https://www.typescriptlang.org/) for type safety and improved developer experience.
+    * [**Bootstrap**](https://getbootstrap.com/) for responsive layout and UI components.
+    * [**Font Awesome**](https://fontawesome.com/) for icons.
+* **Data**:
+    * **JSON files** are used to simulate a database for patients, medications, and drug interactions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+      
+## How It Works
 
-### `npm run build`
+The core logic of the application resides in the medication grouping algorithm found in `src/services/medicationGrouper.ts`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.  **Data Representation**:
+    * `patients.json`: Stores a list of patients and the IDs of the medications they are prescribed.
+    * `medications.json`: Contains a list of all available medications with a unique ID and name.
+    * `interactions.json`: A map where the key is a medication ID and the value is an array of other medication IDs it interacts with.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2.  **Grouping Algorithm**:
+    * When a patient is selected, the `groupMedications` function is called with the list of that patient's medication IDs.
+    * The function iterates through the patient's medications one by one.
+    * For each medication, it tries to place it into an existing group. A medication can be added to a group only if it does **not** interact with **any** of the medications already in that group.
+    * If no suitable existing group is found, a new group is created with the current medication as its first member.
+    * This process continues until all of the patient's medications have been placed into a group.
+    * The final array of groups is then displayed on the UI.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Future Enhancements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Future development could include:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **Backend & Database**: Replace the JSON files with a robust backend (e.g., Node.js/Express) and a proper database (e.g., PostgreSQL, MongoDB) to allow for persistent data.
+* **User Authentication**: Add user accounts for nurses to manage their own list of patients.
+* **API Integration**: Connect to a real-world drug interaction database API (e.g., NIH's RxNorm API) for comprehensive and up-to-date interaction data.
+* **Alerts & Notifications**: Implement real-time alerts for critical interactions or upcoming medication administration times.
+* **Detailed Medication Info**: Add more details for each medication, such as dosage, administration route, and side effects.
