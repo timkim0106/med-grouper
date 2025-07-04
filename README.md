@@ -1,6 +1,6 @@
-# MedScheduler: Medication Grouping Assistant
+# MedGrouper: Medication Grouping Assistant
 
-**MedScheduler** is a web-based application designed to assist nurses and healthcare professionals in safely and efficiently managing patient medication schedules. Its core feature is an intelligent algorithm that automatically groups a patient's prescribed medications, taking into account known drug interactions to prevent adverse effects. This tool aims to reduce the cognitive load on nursing staff, minimize medication errors, and improve patient safety in fast-paced clinical environments.
+**MedGrouper** is a web-based application designed to assist nurses and healthcare professionals in safely and efficiently managing patient medication schedules. Its core feature is an intelligent algorithm that automatically groups a patient's prescribed medications, taking into account known drug interactions to prevent adverse effects. This tool aims to reduce the cognitive load on nursing staff, minimize medication errors, and improve patient safety in fast-paced clinical environments.
 
 ---
 
