@@ -13,38 +13,6 @@
 * **Real-time Updates**: The patient's medication plan updates instantly when new patients or medications are added.
 * **Client-Side Logic**: The entire application runs in the browser, using JSON files as a mock database, making it easy to run and test without a complex backend setup.
 
----
-
-## Technology Stack
-
-* **Frontend**:
-    * [**React**](https://reactjs.org/) (v18.0+)
-    * [**TypeScript**](https://www.typescriptlang.org/) for type safety and improved developer experience.
-    * [**Bootstrap**](https://getbootstrap.com/) for responsive layout and UI components.
-    * [**Font Awesome**](https://fontawesome.com/) for icons.
-* **Data**:
-    * **JSON files** are used to simulate a database for patients, medications, and drug interactions.
-
-      
-## How It Works
-
-The core logic of the application resides in the medication grouping algorithm found in `src/services/medicationGrouper.ts`.
-
-1.  **Data Representation**:
-    * `patients.json`: Stores a list of patients and the IDs of the medications they are prescribed.
-    * `medications.json`: Contains a list of all available medications with a unique ID and name.
-    * `interactions.json`: A map where the key is a medication ID and the value is an array of other medication IDs it interacts with.
-
-2.  **Grouping Algorithm**:
-    * When a patient is selected, the `groupMedications` function is called with the list of that patient's medication IDs.
-    * The function iterates through the patient's medications one by one.
-    * For each medication, it tries to place it into an existing group. A medication can be added to a group only if it does **not** interact with **any** of the medications already in that group.
-    * If no suitable existing group is found, a new group is created with the current medication as its first member.
-    * This process continues until all of the patient's medications have been placed into a group.
-    * The final array of groups is then displayed on the UI.
-
-
-
 ## Future Enhancements
 
 Future development could include:
